@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import './styles/App.css';
 import md5 from "md5"
 
+
 import SearchAppBar from "./components/heroSearchBar";
+import HeroCard from "./components/heroCard";
 
 class App extends Component {
   constructor() {
@@ -30,6 +32,8 @@ class App extends Component {
     const hash = md5(timestamp + privateKey + publicKey)
     fetch(`${baseURL}${searchType}${searchMethod}${value}&ts=${timestamp}&apikey=${publicKey}&hash=${hash}`)
       .then(response => {
+        console.log(response)
+
         if (response.status === 200) {
           this.setState({
             statusCode: 200,
@@ -38,16 +42,23 @@ class App extends Component {
           return response.json()
         } else {
           this.setState({
+            statusCode: response.status,
             value: "",
           })
         }
       })
       .then(data => {
-        if (this.state.statusCode === 200) {
-          console.log(data.data.results)
+        console.log(this.state.statusCode)
+        let newData = data.data.results
+        if (this.state.statusCode === 200 && newData.length === 1) {
+          console.log(data)
           this.setState({
             statusCode: 200,
-            currentHero: data.data.results[0]
+            currentHero: newData[0]
+          })
+        } else if (newData.length === 0) {
+          this.setState({
+            statusCode: 404,
           })
         }
       })
@@ -57,7 +68,8 @@ class App extends Component {
 
     return (
       <div className="App">
-        <SearchAppBar onChange={this.onChange} onSubmit={this.onSubmit} value={this.state.value}/>
+        <SearchAppBar onChange={this.onChange} onSubmit={this.onSubmit} value={this.state.value} statusCode={this.state.statusCode}/>
+        <HeroCard hero={this.state.currentHero} />
       </div>
     );
   }

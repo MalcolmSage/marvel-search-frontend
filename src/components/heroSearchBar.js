@@ -6,6 +6,7 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
+import { Alert } from '@mui/material';
 
 
 
@@ -70,6 +71,7 @@ export default function SearchAppBar(props) {
                     </form>
                 </Search>
             </Toolbar>
+            {props.statusCode === 404 ? <Alert variant="filled" severity="error">Hero not found</Alert> : ""}
         </AppBar>
     );
 }
