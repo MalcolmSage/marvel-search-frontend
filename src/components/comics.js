@@ -10,7 +10,7 @@ class Comics extends Component {
 
 
   render() {
-    const { comics } = this.props
+    const { comics, hero } = this.props
     console.log(comics)
     return (
       <Grid
@@ -27,7 +27,7 @@ class Comics extends Component {
                 <CardMedia
                   component="img"
                   height="140"
-                  image={item.images[0].path + "." + item.images[0].extension}
+                  image={item.images.length !== 0 ? item.images[0].path + "." + item.images[0].extension : hero.thumbnail.path + "." + hero.thumbnail.extension}
                   alt="green iguana"
                 />
                 <CardContent>
