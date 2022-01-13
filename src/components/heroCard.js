@@ -25,6 +25,7 @@ class HeroCard extends Component {
             {hero.description}
           </Typography>
         </Grid>
+        
       </Grid>
     )
   }
