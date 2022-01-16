@@ -55,7 +55,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function SearchAppBar(props) {
 
     return (
-        <AppBar position="static" className="secondaryBackground">
+        <AppBar position="sticky" className="secondaryBackground">
             <Toolbar>
                 <Search>
                     <SearchIconWrapper>

@@ -28,7 +28,7 @@ class App extends Component {
     const privateKey = process.env.REACT_APP_PRIVATE_KEY
     const hash = md5(timestamp + privateKey + publicKey)
     if (this.state.currentHero !== "" && this.state.statusCode === 200) {
-      fetch(`${this.state.currentHero.comics.collectionURI}?&ts=${timestamp}&apikey=${publicKey}&hash=${hash}`)
+      fetch(`https://gateway.marvel.com:443/v1/public/characters/${this.state.currentHero.id}/comics?&ts=${timestamp}&apikey=${publicKey}&hash=${hash}`)
         .then(response => response.json())
         .then(data => {
           this.setState({

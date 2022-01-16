@@ -22,19 +22,19 @@ class Comics extends Component {
       >
         {comics.map((item) => (
           <Grid item key={item.id}>
-            <Card sx={{ maxWidth: 345 }}>
+            <Card sx={{ maxWidth: 300, minWidth: 300, maxHeight: 345, minHeight: 345  }}>
               <CardActionArea>
                 <CardMedia
                   component="img"
-                  height="140"
+                  height={item.images.length !== 0 ? "" : "345"}
                   image={item.images.length !== 0 ? item.images[0].path + "." + item.images[0].extension : hero.thumbnail.path + "." + hero.thumbnail.extension}
                   alt="green iguana"
                 />
-                <CardContent>
+                {/* <CardContent>
                   <Typography gutterBottom variant="h5" component="div">
                     {item.title}
                   </Typography>
-                </CardContent>
+                </CardContent> */}
               </CardActionArea>
             </Card>
           </Grid>
