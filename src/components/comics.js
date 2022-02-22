@@ -10,7 +10,7 @@ class Comics extends Component {
 
   render() {
     const { comics, hero } = this.props
-    console.log(comics)
+    // console.log(comics)
     return (
       <Grid
         container

@@ -6,7 +6,7 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
-import { Alert } from '@mui/material';
+import { Alert, Typography } from '@mui/material';
 
 
 
@@ -70,8 +70,12 @@ export default function SearchAppBar(props) {
                         />
                     </form>
                 </Search>
+                <Typography sx={{ paddingLeft: 2, display: { sm: 'block', lg: "none" } }} align='right'>Marvel Search</Typography>
+                <Typography variant="h4" sx={{ paddingLeft: 2, display: { xs: "none", md: 'none', lg: 'block' } }} align='right'>MSage Marvel Search</Typography>
+
             </Toolbar>
-            {props.statusCode === 404 ? <Alert variant="filled" severity="error">Hero not found</Alert> : ""}
+            {props.statusCode === 404 ? <Alert variant="filled" severity="error">Hero Not Found</Alert> : ""}
+            {props.statusCode === 600 ? <Alert variant="filled" severity="error">No Hero Searched</Alert> : ""}
         </AppBar>
     );
 }
